@@ -1,0 +1,15 @@
+/home/truonglx/DataDeveloper_TruongLX/clion-2017.1.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /media/truecrypt8/LoadBalancer/snw/libvmod-snw
+-- Configuring done
+CMake Error at CMakeLists.txt:61 (add_executable):
+  Cannot find source file:
+
+    src/vmod_snw.lo
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .m .M .mm .h .hh .h++ .hm .hpp
+  .hxx .in .txx
+
+
+CMake Error: CMake can not determine linker language for target: libvmod_snw
+CMake Error: Cannot determine link language for target "libvmod_snw".
+-- Generating done
+-- Build files have been written to: /media/truecrypt8/LoadBalancer/snw/libvmod-snw/cmake-build-debug

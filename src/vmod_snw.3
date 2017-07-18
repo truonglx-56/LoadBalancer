@@ -1,0 +1,591 @@
+.\" Man page generated from reStructuredText.
+.
+.TH VMOD_SNW 3 "" "" ""
+.SH NAME
+vmod_snw \- Snw VMOD
+.
+.nr rst2man-indent-level 0
+.
+.de1 rstReportMargin
+\\$1 \\n[an-margin]
+level \\n[rst2man-indent-level]
+level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
+-
+\\n[rst2man-indent0]
+\\n[rst2man-indent1]
+\\n[rst2man-indent2]
+..
+.de1 INDENT
+.\" .rstReportMargin pre:
+. RS \\$1
+. nr rst2man-indent\\n[rst2man-indent-level] \\n[an-margin]
+. nr rst2man-indent-level +1
+.\" .rstReportMargin post:
+..
+.de UNINDENT
+. RE
+.\" indent \\n[an-margin]
+.\" old: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.nr rst2man-indent-level -1
+.\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.in \\n[rst2man-indent\\n[rst2man-indent-level]]u
+..
+.\" 
+.
+.\" NB:  This file is machine generated, DO NOT EDIT!
+.
+.\" 
+.
+.\" Edit vmod.vcc and run make instead
+.
+.\" 
+.
+.SH SYNOPSIS
+.sp
+import snw [from "path"] ;
+.SH DESCRIPTION
+.sp
+This is the embedded documentation for the snw VMOD. It should
+mention what the vmod is intended to do.
+.sp
+It can span multiple lines and is written in RST format.
+You can even have links and lists in here:
+.INDENT 0.0
+.IP \(bu 2
+\fI\%https://github.com/varnish/libvmod\-snw/\fP
+.IP \(bu 2
+\fI\%https://www.varnish\-cache.org/\fP
+.UNINDENT
+.sp
+The init\-function declared next does not have documentation.
+.SH CONTENTS
+.INDENT 0.0
+.IP \(bu 2
+STRING info()
+.IP \(bu 2
+STRING hello(STRING)
+.IP \(bu 2
+BACKEND app()
+.IP \(bu 2
+INT get_token()
+.IP \(bu 2
+INT get_objectId()
+.IP \(bu 2
+BOOL create(PRIV_VCL, STRING, STRING, STRING, PROBE, STRING, DURATION, DURATION, DURATION, INT, INT)
+.IP \(bu 2
+BACKEND by_name(PRIV_VCL, STRING)
+.IP \(bu 2
+BOOL delete(PRIV_VCL, BACKEND)
+.IP \(bu 2
+STRING version()
+.UNINDENT
+.SS info
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+STRING info()
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+Returns a string set by the last VCL event, demonstrating the use of
+event functions.
+.SS hello
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+STRING hello(STRING)
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+The different functions provided by the VMOD should also have their own
+embedded documentation. This section is for the hello() function.
+
+.sp
+.ce
+----
+
+.ce 0
+.sp
+.sp
+
+.nf
+*
+.fi
+req: struct của varnish chứa nội dung của request.
+
+.nf
+*
+.fi
+backend: struct của varnish chứa thông tin của backend bao gồm host, port.
+.. _func_app:
+.IP "System Message: WARNING/2 (vmod_snw.man.rst:, line 81)"
+Inline emphasis start\-string without end\-string.
+.IP "System Message: WARNING/2 (vmod_snw.man.rst:, line 81)"
+Inline emphasis start\-string without end\-string.
+.SS app
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+BACKEND app()
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+
+.nf
+*
+.fi
+Lấy access_token từ cookie hoặc request parameter
+.. _func_get_token:
+.IP "System Message: WARNING/2 (vmod_snw.man.rst:, line 92)"
+Inline emphasis start\-string without end\-string.
+.SS get_token
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+INT get_token()
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+
+.nf
+*
+.fi
+Lấy objectId từ URI
+.. _func_get_objectId:
+.IP "System Message: WARNING/2 (vmod_snw.man.rst:, line 102)"
+Inline emphasis start\-string without end\-string.
+.SS get_objectId
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+INT get_objectId()
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+
+.nf
+*
+.fi
+Kiểm tra access_token có hợp lệ, nếu hợp lệ thì trả về userId
+#$Function INT validate_token(STRING)
+.IP "System Message: WARNING/2 (vmod_snw.man.rst:, line 112)"
+Inline emphasis start\-string without end\-string.
+.SS Backend_dynamic
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+BOOL backend_dyn.create(STRING name, STRING host, [STRING port,]
+                        [PROBE probe,] [STRING host_header,]
+                        [DURATION connect_timeout,]
+                        [DURATION first_byte_timeout,]
+                        [DURATION between_bytes_timeout,]
+                        [INT max_connections,] [INT proxy_header])
+
+BACKEND backend_dyn.by_name(STRING name)
+
+BOOL backend_dyn.delete(BACKEND be)
+
+STRING backend_dyn.version()
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SH DESCRIPTION
+.sp
+This Varnish module (VMOD) provides functions to create and delete
+backends at runtime. This means that backends can be created at any
+time while Varnish is running without reloading VCL, and that backends
+created by the VMOD can also be deleted by the VMOD at runtime.
+.sp
+Backends created by the VMOD are the same as backends defined by
+static declarations with the \fBbackend\fP keyword, and they have the
+same configuration parameters with the same default values. Once
+created, a backend can be added to a director or assigned as a value
+of \fBreq.backend_hint\fP or \fBbereq.backend\fP\&. Backends created by the
+VMOD are accessed by the finder method \fBby_name\fP, using the name
+string assigned at creation.
+.sp
+Once deleted, a backend is no longer in use by Varnish \-\- it is not
+selected by any director to which it may have been added, and is no
+longer returned by \fBby_name\fP\&.
+.sp
+Examples:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+import directors;
+
+probe p { .url = "/"; }
+
+sub vcl_init {
+    # Backends can be created at VCL initialization.
+    # The required parameters set a backend name and its host.
+    # create() returns false if backend creation was unsuccessful.
+    if (!backend_dyn.create(name="be1", host="be1host.com")) {
+        return(fail);
+    }
+
+    # Dynamic backends may be added to directors.
+    # by_name() returns the backend created with the given name.
+    new rr = directors.round_robin();
+    rr.add_backend(backend_dyn.by_name("be1"));
+
+    # Backend creation supports all of the optional configuration
+    # parameters available to static backend declarations; these
+    # have the same default values as for a static declaration if
+    # left unspecified.
+    if (!backend_dyn.create(name="be1", host="be1host.com",
+                            port="8080", probe=p,
+                            host_header="www.mysite.com",
+                            connect_timeout=1s, first_byte_timeout=2s,
+                            between_bytes_timeout=3s,
+                            max_connections=100, proxy_header=1)) {
+        return(fail);
+    }
+
+    # Backends can also be deleted at VCL initialization.
+    # delete() returns false if backend deletion was unsuccessful.
+    # A deleted backend is no longer selected by any director to
+    # which it was previously added.
+    if (!backend_dyn.delete(backend_dyn.by_name("be1"))) {
+        return(fail);
+    }
+}
+
+sub vcl_recv {
+    # Backends can be created and deleted in any VCL subroutine.
+    if (req.method == "PUT") {
+        if (!backend_dyn.create(name="be2", host="be2host.com")) {
+            return(synth(500));
+        }
+        return(synth(204));
+    }
+    if (req.method == "DELETE") {
+        if (!backend_dyn.delete(backend_dyn.by_name("be2"))) {
+            return(synth(500));
+        }
+        return(synth(204));
+    }
+    set req.backend_hint = backend_dyn.by_name("be2");
+}
+
+sub vcl_backend_fetch {
+    set bereq.backend = backend_dyn.by_name("be2");
+}
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SS create
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+BOOL create(PRIV_VCL, STRING name, STRING host, STRING port="", PROBE probe=0, STRING host_header="", DURATION connect_timeout=0, DURATION first_byte_timeout=0, DURATION between_bytes_timeout=0, INT max_connections=0, INT proxy_header=0)
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+Create a backend with the given configuration. The parameters
+correspond to the configuration fields of a static backend
+declaration. Further restrictions on required and optional parameters
+are given below.
+.sp
+\fBcreate()\fP returns \fBfalse\fP if backend creation was unsuccessful,
+\fBtrue\fP on success. After successful creation, the backend appears in
+the output of the CLI command \fBbackend.list\fP, and statistics in the
+\fBVBE.*\fP namespace appear in the output of \fBvarnishstat\fP\&. Its
+health can be set with the CLI command \fBbackend.set_health\fP\&.
+.sp
+A backend created by the VMOD is "owned" by the VCL instance in which
+it is created, and is not available in any other VCL loaded by the
+Varnish process. The backend is deleted when its VCL is discarded, and
+it enters the cooldown state when its VCL is set to cold; in
+particular, no more health probes for that backend are performed, if
+any were defined, when the backend goes cold.
+.sp
+The parameters may be specified as named parameters in any order. If
+used without parameter names, they MUST appear strictly in the order
+given in the function signature shown above.
+.SS Required Parameters
+.sp
+The parameters \fBname\fP and \fBhost\fP MUST be non\-empty strings.
+\fBname\fP MUST contain only alphanumeric characters or the
+underscore. It MAY NOT be a name already used for another backend
+created by the VMOD in the current instance of VCL, unless the backend
+with the duplicate name has been deleted.
+.sp
+\fBhost\fP MUST be either an IP address (IPv4 or IPv6) or a host name
+that can be resolved when \fBcreate\fP is called. A host name may
+resolve to both an IPv4 and IPv6 address, but for each address family,
+it MUST resolve to exactly one address.
+.SS Optional Parameters
+.sp
+\fBport\fP MUST be a numeric port number, or a TCP service name listed
+in \fB/etc/services\fP\&. The default is \fB"80"\fP\&.
+.sp
+\fBprobe\fP MUST specify a probe defined in a static declaration (or
+possibly a probe returned by another VMOD). If left unspecified, the
+backend has no probe.
+.sp
+\fBhost_header\fP MUST be a non\-empty legal value for the \fBHost\fP
+header, and is sent as the \fBHost\fP header in backend requests. By
+default, the value of the \fBhost\fP parameter is used for \fBHost\fP\&.
+.sp
+Each of \fBconnect_timeout\fP, \fBfirst_byte_timeout\fP and
+\fBbetween_bytes_timeout\fP MUST be a VCL duration, such as \fB0.5s\fP,
+\fB1m\fP, etc. If a timeout is set for a specific backend request (using
+\fBbereq.connect_timeout\fP, etc.), then that timeout overrides the
+setting in the backend definition. If any of these parameters are left
+unspecified, then the timeout "hierarchy" is followed as for standard
+Varnish \-\- a \fBbereq.*\fP timeout is used if set, otherwise the
+corresponding global parameter is used (\fB\-p connect_timeout\fP, etc.).
+.sp
+\fBmax_connections\fP MUST be an integer. By default, there is no upper
+bound for the connections to a backend.
+.sp
+\fBproxy_header\fP MUST be 0, 1 or 2. If 1 or 2, then that version of
+the PROXY protocol is used with the backend; if 0, then the PROXY
+protocol is not used. Default is 0.
+.sp
+Examples:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+if (!backend_dyn.create(name="be", host="myhost.com")) {
+        return(synth(500, "Backend creation failed"));
+}
+if (!backend_dyn.create(name="app", host="10.1.2.3",
+                        port="8080", probe=p,
+                        connect_timeout=1s, first_byte_timeout=2s,
+                        between_bytes_timeout=1s)) {
+        return(synth(500, "Backend creation failed"));
+}
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SS by_name
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+BACKEND by_name(PRIV_VCL, STRING name)
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+Return the backend created by the VMOD with the given name in the
+current instance of VCL. \fBname\fP MUST be the name of a backend
+previously created with \fBcreate()\fP in the current VCL.
+.sp
+\fBby_name()\fP cannot return a statically declared backend, a backend
+deleted by \fBdelete()\fP, a backend owned by another VCL, or a backend
+created by another VMOD.
+.sp
+The function returns \fBNULL\fP if no backend with the given name exists
+(or has been deleted). If this happens when setting the value of
+\fBreq.backend_hint\fP or \fBbereq.backend\fP, the result is typically a
+503 response with the FetchError "No backend found".
+.sp
+XXX: Document dir.add_backend(NULL)
+.sp
+Examples:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+set req.backend_hint = backend_dyn.by_name("be");
+set bereq.backend = backend_dyn.by_name("be");
+dir.add_backend(backend_dyn.by_name("be"));
+backend_dyn.delete(backend_dyn.by_name("be"))
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SS delete
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+BOOL delete(PRIV_VCL, BACKEND be)
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+Delete the backend created by the VMOD with the given name in the
+current instance of VCL. \fBname\fP MUST be the name of a backend
+previously created with \fBcreate()\fP in the current VCL.
+.sp
+After deletion, a backend is considered unhealthy and hence is o
+longer selected for new backend requests. It enters a "cooldown" state
+of at least 60 seconds, during which it may complete any requests that
+had already begun when it was deleted.  Any current backend requests
+MUST be completed during this time. The \fBVBE.*\fP statistics for the
+backend continue to appear in the output of \fBvarnishstat\fP during
+cooldown, and \fBMAIN.n_backend\fP is not decremented until cooldown
+elapses.
+.sp
+The backend no longer appears in the output of \fBbackend.list\fP after
+deletion, and its health cannot be set by \fBbackend.set_health\fP\&. It
+is not returned by \fBby_name()\fP, and cannot be used to set the value
+of \fBreq.backend_hint\fP or \fBbereq.backend\fP\&. If the backend had been
+previously added to a director, it is no longer selected by the
+director after deletion.
+.sp
+\fBdelete()\fP cannot delete a statically declared backend, a backend
+that has already been deleted, a backend owned by another VCL, or a
+backend created by another VMOD.
+.sp
+\fBdelete()\fP returns \fBfalse\fP if deletion was unsuccessful, \fBtrue\fP
+otherwise.
+.sp
+Examples:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+if (!backend_dyn.delete(backend_dyn.by_name("be"))) {
+        return(synth(500, "Backend delete failed"));
+}
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SS version
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+STRING version()
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+Returns the version string for this vmod.
+.sp
+Example:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+import std;
+std.log("Using VMOD backend_dyn version " + backend_dyn.version());
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SH ERRORS
+.sp
+If \fBcreate()\fP is called in \fBvcl_init\fP and backend creation fails,
+then the VCL program will fail to load, and the VCC compiler will emit
+an error message.
+.sp
+If \fBcreate()\fP is called in any other VCL subroutine and an error
+occurs, then an error message will be written to the Varnish log using
+the tag \fBVCL_Error\fP, and the function returns false.
+.sp
+\fBby_name()\fP and \fBdelete()\fP only fail if the specified backend was
+not created by the VMOD in the current VCL, or if it was already
+deleted. There is no error message.
+.SH REQUIREMENTS
+.sp
+This VMOD requires Varnish 5.1. See the source repository for versions
+that are compatible with other versions of Varnish.
+.SH INSTALLATION
+.sp
+See \fI\%INSTALL.rst\fP in the source repository.
+.SH LIMITATIONS
+.sp
+\fBcreate()\fP prevents the use of duplicate backend names created by
+this VMOD in the current instance of VCL, but it cannot prevent the
+re\-use of a backend name created by other means, for example by a
+static declaration or another VMOD. Varnish has no problem using
+backends with duplicate names, since they are represented internally
+as distinct objects. But if two backends have the same name, they
+appear as duplicate entries in the output of \fBbackend.list\fP; and if
+one of them is sick while the other is healthy, it is impossible to
+tell which is which. Also, \fBVBE.*\fP stats are maintained for only one
+of the backends with that name. So you should take care not to create
+backends with names used elsewhere in the VCL.
+.sp
+\fBby_name()\fP searches for backends in a linear list, and is locked
+out of the search if \fBcreate()\fP or \fBdelete()\fP are executing
+concurrently. If you have a large number of dynamic backends, it
+is probably more efficient to add them to directors (even a director
+that has only one backend) than to set \fBreq.backend_hint\fP or
+\fBbereq.backend\fP using \fBby_name()\fP, since a director does not
+execute the linear search.
+.sp
+It is in the nature of dynamic backends that they are not preserved
+when Varnish stops or when the VCL is discarded. While dynamic
+backends make it possible to change the backend configuration without
+reloading VCL, you may nevertheless want to update your backend
+configuration in VCL sources on the file system, so that your backends
+are not "lost" on restart.
+.SH SEE ALSO
+.INDENT 0.0
+.IP \(bu 2
+varnishd(1)
+.IP \(bu 2
+vcl(7)
+.IP \(bu 2
+\fI\%"Writing a Director"\fP
+.IP \(bu 2
+source repository: \fI\%https://code.uplex.de/uplex\-varnish/libvmod\-backend_dyn\fP
+.IP \(bu 2
+developer contact: <\fI\%varnish\-support@uplex.de\fP>, and at the source
+repository site
+.UNINDENT
+.SH COPYRIGHT
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+Copyright YOU (c) 1900.
+
+(vmodtool requires this format.)
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.\" Generated by docutils manpage writer.
+.

@@ -1,0 +1,1 @@
+/usr/bin/cc  -g   CMakeFiles/libvmod_snw.dir/src/vcc_snw_if.c.o CMakeFiles/libvmod_snw.dir/src/vmod_snw.c.o ../src/vcc_snw_if.lo ../src/vmod_snw.lo  -o libvmod_snw 

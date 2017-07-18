@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/media/truecrypt8/LoadBalancer/snw/libvmod-snw/src/vcc_snw_if.c
+config.h
+/media/truecrypt8/LoadBalancer/snw/libvmod-snw/src/config.h
+stdio.h
+-
+vdef.h
+/media/truecrypt8/LoadBalancer/snw/libvmod-snw/src/vdef.h
+vcl.h
+/media/truecrypt8/LoadBalancer/snw/libvmod-snw/src/vcl.h
+vrt.h
+/media/truecrypt8/LoadBalancer/snw/libvmod-snw/src/vrt.h
+vcc_snw_if.h
+/media/truecrypt8/LoadBalancer/snw/libvmod-snw/src/vcc_snw_if.h
+vmod_abi.h
+/media/truecrypt8/LoadBalancer/snw/libvmod-snw/src/vmod_abi.h
+
+/media/truecrypt8/LoadBalancer/snw/libvmod-snw/src/vcc_snw_if.h
+
+/media/truecrypt8/LoadBalancer/snw/libvmod-snw/src/vmod_snw.c
+config.h
+/media/truecrypt8/LoadBalancer/snw/libvmod-snw/src/config.h
+stdio.h
+-
+stdlib.h
+-
+vcl.h
+/media/truecrypt8/LoadBalancer/snw/libvmod-snw/src/vcl.h
+vrt.h
+/media/truecrypt8/LoadBalancer/snw/libvmod-snw/src/vrt.h
+cache/cache.h
+/media/truecrypt8/LoadBalancer/snw/libvmod-snw/src/cache/cache.h
+vtim.h
+/media/truecrypt8/LoadBalancer/snw/libvmod-snw/src/vtim.h
+vcc_snw_if.h
+/media/truecrypt8/LoadBalancer/snw/libvmod-snw/src/vcc_snw_if.h
+

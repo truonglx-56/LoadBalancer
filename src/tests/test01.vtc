@@ -1,0 +1,36 @@
+varnishtest "Test snw vmod"
+
+server s1 {
+       rxreq
+       txresp
+} -start
+
+varnish v1 -vcl+backend {
+	import std;
+	import ${vmod_snw};
+
+	sub vcl_init {
+		std.log(snw.info());
+	}
+
+	sub vcl_deliver {
+		set resp.http.hello = snw.hello("World");
+		set resp.http.info = snw.info();
+	}
+} -start
+
+logexpect l1 -v v1 -g raw -d 1 {
+	expect 0 0    CLI     {^Rd vcl.load}
+	expect 0 =    VCL_Log {^vmod_snw loaded at }
+} -start
+
+client c1 {
+	txreq -url "/"
+	rxresp
+	expect resp.http.hello == "Hello, World"
+	expect resp.http.info  ~  "^vmod_snw warmed at "
+}
+
+client c1 -run
+
+logexpect l1 -wait
